@@ -1,6 +1,7 @@
 import datetime
-from django.core.management import call_command
+
 from django.contrib.auth.models import User
+from django.core.management import call_command
 
 
 def test_full_roundtrip(db, tmpdir, settings, sftpserver):
