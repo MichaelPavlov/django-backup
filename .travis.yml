@@ -1,5 +1,9 @@
 language: python
 sudo: false
+python:
+    - "2.7"
+    - "3.4"
+    - "3.5"
 env:
   matrix:
     - TOXENV=py27-dj18-postgres
