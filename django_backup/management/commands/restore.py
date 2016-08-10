@@ -11,18 +11,19 @@ from django_backup.utils import BaseBackupCommand, TIME_FORMAT, is_db_backup, is
 class Command(BaseBackupCommand):
 
     help = "Restores latest backup."
-    option_list = BaseCommand.option_list + (
-        make_option(
+
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--media', '-m',
             action='store_true', default=False, dest='media',
             help='Restore media dir'
-        ),
-        make_option(
+        )
+
+        parser.add_argument(
             '--no-database', '-d',
             action='store_true', default=False, dest='no_database',
             help='Do not restore database'
-        ),
-    )
+        )
 
     @staticmethod
     def _time_suffix():

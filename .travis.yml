@@ -6,26 +6,12 @@ python:
     - "3.5"
 env:
   matrix:
-    - TOXENV=py27-dj18-postgres
-    - TOXENV=py27-dj18-mysql
-    - TOXENV=py27-dj19-postgres
-    - TOXENV=py27-dj19-mysql
-    - TOXENV=py27-dj110-postgres
-    - TOXENV=py27-dj110-mysql
-
-    - TOXENV=py34-dj18-postgres
-    - TOXENV=py34-dj18-mysql
-    - TOXENV=py34-dj19-postgres
-    - TOXENV=py34-dj19-mysql
-    - TOXENV=py34-dj110-postgres
-    - TOXENV=py34-dj110-mysql
-
-    - TOXENV=py35-dj18-postgres
-    - TOXENV=py35-dj18-mysql
-    - TOXENV=py35-dj19-postgres
-    - TOXENV=py35-dj19-mysql
-    - TOXENV=py35-dj110-postgres
-    - TOXENV=py35-dj110-mysql
+    - TOXENV=dj18-postgres
+    - TOXENV=dj18-mysql
+    - TOXENV=dj19-postgres
+    - TOXENV=dj19-mysql
+    - TOXENV=dj110-postgres
+    - TOXENV=dj110-mysql
 install:
   - pip install tox
 script: tox
