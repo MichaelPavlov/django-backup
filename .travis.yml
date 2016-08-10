@@ -2,8 +2,6 @@ language: python
 sudo: false
 env:
   matrix:
-    - TOXENV=py27-dj17-postgres
-    - TOXENV=py27-dj17-mysql
     - TOXENV=py27-dj18-postgres
     - TOXENV=py27-dj18-mysql
     - TOXENV=py27-dj19-postgres
@@ -11,8 +9,6 @@ env:
     - TOXENV=py27-dj110-postgres
     - TOXENV=py27-dj110-mysql
 
-    - TOXENV=py34-dj17-postgres
-    - TOXENV=py34-dj17-mysql
     - TOXENV=py34-dj18-postgres
     - TOXENV=py34-dj18-mysql
     - TOXENV=py34-dj19-postgres
@@ -20,8 +16,6 @@ env:
     - TOXENV=py34-dj110-postgres
     - TOXENV=py34-dj110-mysql
 
-    - TOXENV=py35-dj17-postgres
-    - TOXENV=py35-dj17-mysql
     - TOXENV=py35-dj18-postgres
     - TOXENV=py35-dj18-mysql
     - TOXENV=py35-dj19-postgres
