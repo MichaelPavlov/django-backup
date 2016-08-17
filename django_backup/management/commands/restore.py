@@ -94,7 +94,7 @@ class Command(BaseBackupCommand):
             # TODO reinstate postgres support
             elif self.engine == 'django.db.backends.postgresql_psycopg2':
                 self.stdout.write('Doing Postgresql restore to database %s from %s...' % (self.db, sql_local))
-                self.posgresql_restore(sql_local)
+                self.postgresql_restore(sql_local)
             else:
                 raise CommandError('Backup in %s engine not implemented' % self.engine)
 
@@ -123,19 +123,25 @@ class Command(BaseBackupCommand):
         self.stdout.write('\t%s' % cmd)
         os.system(cmd)
 
-    def posgresql_restore(self, infile):
-        args = ['psql']
+    def postgresql_restore(self, infile):
+        args = ['pg_restore']
         if self.user:
-            args.append("-U %s" % self.user)
+            args.append("--role=%s" % self.user)
         if self.passwd:
-            os.environ['PGPASSWORD'] = self.passwd
+            args.append("--password=%s" % self.passwd)
         if self.host:
-            args.append("-h %s" % self.host)
+            args.append("--host=%s" % self.host)
         if self.port:
-            args.append("-p %s" % self.port)
-        args.append('-f %s' % infile)
-        args.append("-o %s" % os.path.join(self.tempdir, 'dump.log'))
-        args.append(self.db)
+            args.append("--port=%s" % self.port)
+        if self.db:
+            args.append("--dbname=%s" % self.db)
+
+        args.append('--no-owner')
+        args.append('%s' % infile)
+
         cmd = ' '.join(args)
+        cmd += ">%s 2>&1" % os.path.join(self.tempdir, 'dump.log')
         self.stdout.write('\t%s' % cmd)
+
         os.system(cmd)
+

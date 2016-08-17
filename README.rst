@@ -163,3 +163,4 @@ Examples
     or
 
     call_command("backup", ftp=True, media=True, delete_local=True, clean_remote_db=True, clean_remote_media=True, clean_remote_rsync=True)
+

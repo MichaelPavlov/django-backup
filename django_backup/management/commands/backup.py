@@ -219,6 +219,7 @@ class Command(BaseBackupCommand):
         # TODO reinstate postgres support
         elif self.engine == 'django.db.backends.postgresql_psycopg2':
             self._write('Doing Postgresql backup to database %s into %s' % (self.db, outfile))
+            outfile = outfile + '.tar'
             self.do_postgresql_backup(outfile)
         else:
             raise CommandError('Backup in %s engine not implemented' % self.engine)
@@ -402,6 +403,10 @@ class Command(BaseBackupCommand):
         )
         if table_args:
             table_args = '-a %s' % table_args
+
+        # Dump to tarball option
+        args.append('-Ft')
+
         pgdump_cmd = '%s %s %s > %s' % (pgdump_path, ' '.join(args), table_args or '--clean', outfile)
         self._write(pgdump_cmd)
         os.system(pgdump_cmd)
